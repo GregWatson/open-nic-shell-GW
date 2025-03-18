@@ -20,7 +20,7 @@ The logic added in order is:
 
 The new logic is in the plugin/loop directory. This replaces the standard p2p plugin (although most of it remians identical)
 
-The top level module (open-nic-shell) is modified to intantiate the actual ddr4_0 instance of the DDR4 controller.
+The top level module (open-nic-shell) is modified to instantiate the actual ddr4_0 instance of the DDR4 controller.
 
 The IP definition file (.xci) for the DDR4 controller is in `src/ddr4/ddr4_0.xci`
 
