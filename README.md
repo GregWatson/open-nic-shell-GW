@@ -25,14 +25,16 @@ The IP definition file (.xci) for the DDR4 controller is in `src/ddr4/ddr4_0.xci
 ## Synthesis
 The synthesis script (script/build.tcl) has been modified to include the DDR4 controller. See these added lines:
 
-`# Read DDR IP which is already in .xci`
-`puts "Reading ddr4 IP from ${src_dir}/ddr4/ddr4_0.xci"`
+`# Read DDR IP which is already in .xci`\
+`puts "Reading ddr4 IP from ${src_dir}/ddr4/ddr4_0.xci"`\
 `read_ip ${src_dir}/ddr4/ddr4_0.xci`
 
 The constraint files modified include:
-`constr/au250/pins.xdc` - to add the DDR4 pins
-`constr/au250/timing.xdc` - to add the requisite clock information
+
+- `constr/au250/pins.xdc` - to add the DDR4 pins\
+- `constr/au250/timing.xdc` - to add the requisite clock information
 
 To synthesize you need to give the path to the new plugin:
-`cd scripts`
+
+`cd scripts`\
 `vivado -mode tcl -source build.tcl -tclargs -board au250 -impl 1 -user_plugin [your-path-to_open-nic-shell-GW-directory]/plugin/loop/ -num_cmac_port 2 -num_phys_func 2`
