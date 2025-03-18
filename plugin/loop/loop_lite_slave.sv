@@ -56,6 +56,8 @@ module loop_lite_slave #(
     input [DDR4_NUM_RD_REGS*32-1:0]  ddr4_reg_rdata,
     input                            ddr4_ui_rst,
     input                            ddr4_ui_clk,
+    
+    output        ddr4_0_rst, // reset the ddr4_0 IP (MIG 2.2)
 
     input         aclk,
     input         aresetn
@@ -94,7 +96,9 @@ loop_registers #(
     .ddr4_reg_rst   (ddr4_reg_rst),
     .ddr4_reg_rdata (ddr4_reg_rdata),
     .ddr4_ui_rst    (ddr4_ui_rst),
-    .ddr4_ui_clk    (ddr4_ui_clk)
+    .ddr4_ui_clk    (ddr4_ui_clk),
+
+    .ddr4_0_rst (ddr4_0_rst)
 );
 
   axi_lite_register #(

@@ -156,7 +156,8 @@ loop_lite_slave #(
     .ddr4_reg_rdata (ddr4_reg_rdata),
     .ddr4_reg_rst   (ddr4_reg_rst),
     .ddr4_ui_rst    (c0_ddr4_ui_clk_sync_rst),
-    .ddr4_ui_clk    (c0_ddr4_ui_clk)
+    .ddr4_ui_clk    (c0_ddr4_ui_clk),
+    .ddr4_0_rst     (ddr4_sys_rst)
 
 );
 
@@ -186,6 +187,5 @@ loop_ddr_ctrl #(
     .c0_ddr4_app_wdf_data(c0_ddr4_app_wdf_data),            // output wire [511 : 0] c0_ddr4_app_wdf_data
     .c0_ddr4_app_wdf_mask(c0_ddr4_app_wdf_mask),            // output wire [63 : 0] c0_ddr4_app_wdf_mask
     .c0_ddr4_app_rd_data(c0_ddr4_app_rd_data),              // input wire [511 : 0] c0_ddr4_app_rd_data
-    .c0_init_calib_complete(c0_init_calib_complete),        // input wire c0_init_calib_complete
-    .ddr4_sys_rst(ddr4_sys_rst)                             // output wire ddr4_sys_rst
+    .c0_init_calib_complete(c0_init_calib_complete)        // input wire c0_init_calib_complete
 );

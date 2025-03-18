@@ -230,11 +230,14 @@ if {[string equal $board_repo ""]} {
 }
 
 # Enumerate modules
+puts "INFO: Enumerating modules from source directory: $src_dir"
 foreach name [glob -tails -directory ${src_dir} -type d *] {
     if {![string equal $name "shell"]} {
+        puts "INFO:  -- added module $name"
         dict append module_dict $name "${src_dir}/${name}"
     }
 }
+
 
 # Create/open Manage IP project
 set ip_build_dir ${build_dir}/vivado_ip
@@ -338,7 +341,7 @@ if {![string equal $board_part ""]} {
 }
 set_property target_language verilog [current_project]
 
-# Marco to enable conditional compilation at Verilog level
+# Macro to enable conditional compilation at Verilog level
 set verilog_define "__synthesis__ __${board}__"
 if {$zynq_family} {
     append verilog_define " " "__zynq_family__"
@@ -350,6 +353,11 @@ set_property verilog_define $verilog_define [current_fileset]
 dict for {ip ip_dir} $ip_dict {
     read_ip -quiet ${ip_dir}/${ip}.xci
 }
+
+# Read DDR IP which is already in .xci
+puts "Reading ddr4 IP from ${src_dir}/ddr4/ddr4_0.xci"
+read_ip ${src_dir}/ddr4/ddr4_0.xci
+
 
 # Read user plugin files
 set include_dirs [get_property include_dirs [current_fileset]]
@@ -422,6 +430,8 @@ read_xdc -unmanaged ${constr_dir}/${board}/pins.xdc
 read_xdc -unmanaged ${constr_dir}/${board}/timing.xdc
 read_xdc ${constr_dir}/${board}/general.xdc
 read_xdc ${build_dir}/run_params.xdc
+
+
 
 # Simulate design
 if {$sim} {

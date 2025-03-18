@@ -83,6 +83,29 @@ module box_250mhz #(
   input                          box_rstn,
   output                         box_rst_done,
 
+
+  // DDR application interface.
+  // Connects to Xilinx DDR IP instantiated in open_nic_shell.sv
+  
+  output wire c0_ddr4_app_en,
+  output wire c0_ddr4_app_hi_pri,
+  output wire c0_ddr4_app_wdf_end,
+  output wire c0_ddr4_app_wdf_wren,
+  output wire c0_ddr4_app_correct_en_i,
+  input  wire c0_ddr4_app_rd_data_end,
+  input  wire c0_ddr4_app_rd_data_valid,
+  input  wire c0_ddr4_app_rdy,
+  input  wire c0_ddr4_app_wdf_rdy,
+  output wire [30 : 0] c0_ddr4_app_addr,
+  output wire [2 : 0] c0_ddr4_app_cmd,
+  output wire [511 : 0] c0_ddr4_app_wdf_data,
+  output wire [63 : 0] c0_ddr4_app_wdf_mask,
+  input  wire [511 : 0] c0_ddr4_app_rd_data,
+  input  wire c0_ddr4_ui_clk,
+  input  wire c0_ddr4_ui_clk_sync_rst,
+  input wire  c0_init_calib_complete,
+  output wire ddr4_sys_rst,
+
   input                          axil_aclk,
 
 `ifdef __au55n__
