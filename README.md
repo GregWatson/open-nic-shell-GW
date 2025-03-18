@@ -1,4 +1,11 @@
-# AMD OpenNIC Shell
+# AMD OpenNIC Shell - Greg's modified version
+
+This is a fork of Xilinx's https://github.com/Xilinx/open-nic-shell - see that first for background information
+
+
+
+To synthesize:
+
 
 This is one of the three components of the
 [OpenNIC project](https://github.com/Xilinx/open-nic.git).  The other components are: 
